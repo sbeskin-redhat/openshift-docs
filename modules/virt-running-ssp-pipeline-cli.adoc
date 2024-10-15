@@ -14,7 +14,7 @@ Use a `PipelineRun` resource to run the example pipelines. A `PipelineRun` objec
 +
 [source,yaml]
 ----
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   generateName: windows11-installer-run-
@@ -37,11 +37,11 @@ spec:
         -   name: name
             value: windows-efi-installer
         -   name: version
-            value:
+            value: {product-version}
         resolver: hub
     taskRunSpecs:
     -   pipelineTaskName: modify-windows-iso-file
-        taskPodTemplate:
+        PodTemplate:
             securityContext:
                 fsGroup: 107
                 runAsUser: 107
